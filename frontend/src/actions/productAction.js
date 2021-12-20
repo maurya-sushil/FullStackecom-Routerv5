@@ -16,6 +16,9 @@ import {
     DELETE_REVIEW_REQUEST,
     DELETE_REVIEW_SUCCESS,
     DELETE_REVIEW_FAIL,
+    ADMIN_PRODUCT_REQUEST,
+    ADMIN_PRODUCT_SUCCESS,
+    ADMIN_PRODUCT_FAIL,
   } from "../constants/productConstant";
 
 export const getProducts = (keyword="", currentPage=1,price=[0,25000],category,ratings=0)=>async (dispatch) =>{
@@ -120,6 +123,27 @@ export const newReview = (reviewData) => async (dispatch) => {
       });
     }
   };
+
+
+// Get All Products For Admin
+export const getAdminProduct = () => async (dispatch) => {
+  try {
+    dispatch({ type: ADMIN_PRODUCT_REQUEST });
+
+    const { data } = await axios.get("/api/v1/products");
+
+    dispatch({
+      type: ADMIN_PRODUCT_SUCCESS,
+      payload: data.products,
+    });
+  } catch (error) {
+    dispatch({
+      type: ADMIN_PRODUCT_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
 
 export const clearErrors = async (dispatch)=>{
     dispatch({type:CLEAR_ERRORS})

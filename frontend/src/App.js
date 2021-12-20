@@ -24,27 +24,36 @@ import Shipping from "./components/Shipping/Shipping.js";
 import ConfirmOrder from "./components/Cart/ConfirmOrder.js";
 import Payment from "./components/Cart/Payment";
 import axios from "axios";
-import {Elements} from '@stripe/react-stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js/pure';
 import OrderSuccess from "./components/Cart/OrderSuccess";
 import Order from "./components/Order/Order.js";
 import OrderDetails from "./components/Order/OrderDetails";
+import Dashboard from "./components/Admin/Dashboard";
+import ProductReviews from "./components/Admin/ProductReviews";
+import UpdateUser from "./components/Admin/UpdateUser";
+import UsersList from "./components/Admin/UsersList";
+
+
 // import ProductReviews from "./component/Admin/ProductReviews.js";
 
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const [stripeApiKey, setStripeApiKey] = useState("");
-   
+
   async function getStripeApiKey() {
     const config = {
-      headers: {'Access-Control-Allow-Origin': '*'}
-  };
-    const { data } = await axios.get("/api/v1/stripeapikey",config);
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        "Access-Control-Allow-Credentials": true
+      }
+    };
+    const { data } = await axios.get("/api/v1/stripeapikey", config);
 
     setStripeApiKey(data.stripeApiKey);
   }
-  
+
 
   useEffect(() => {
     WebFont.load({
@@ -107,12 +116,12 @@ function App() {
 
         <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
 
-        {/* <ProtectedRoute
+        <ProtectedRoute
           isAdmin={true}
           exact
           path="/admin/dashboard"
           component={Dashboard}
-        />
+        /> 
         <ProtectedRoute
           exact
           path="/admin/products"
@@ -164,7 +173,7 @@ function App() {
           path="/admin/reviews"
           isAdmin={true}
           component={ProductReviews}
-        /> */}
+        />
 
         {/* <Route
           component={

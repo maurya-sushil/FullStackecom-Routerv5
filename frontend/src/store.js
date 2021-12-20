@@ -1,8 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { newReviewReducer, productDetailsReducer, productReducer, productReviewsReducer, reviewReducer } from "./reducers/productReducer";
-import { forgotPasswordReducer, profileReducer, userReducer } from "./reducers/userReducer";
+import { newReviewReducer, productDetailsReducer, productReducer, productReviewsReducer, productsReducer, reviewReducer } from "./reducers/productReducer";
+import { allUsersReducer, forgotPasswordReducer, profileReducer, userDetailsReducer, userReducer } from "./reducers/userReducer";
 import { cartReducer } from "./reducers/cartReducer";
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer } from "./reducers/orderReducer";
 
@@ -19,10 +19,12 @@ const reducer = combineReducers({
     orderDetails:orderDetailsReducer,
     newReview: newReviewReducer,
     allOrders: allOrdersReducer,
-    // allUsers: allUsersReducer,
-    // userDetails: userDetailsReducer,
+    allUsers: allUsersReducer,
+    userDetails: userDetailsReducer,
     productReviews: productReviewsReducer,
     review: reviewReducer,
+    allProducts:productsReducer
+    
     
 });
 
