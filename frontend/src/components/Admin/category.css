@@ -1,0 +1,165 @@
+.categoryBox {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background-color: rgb(231, 231, 231);
+    position: fixed;
+    top: 0%;
+    left: 0;
+  }
+  
+  .categoryContainer {
+    background-color: white;
+    width: 50vw;
+    height: 70vh;
+    border-radius: 4ch;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  .createCategoryHeading {
+    text-align: center;
+    color:tomato;
+    font: 400 1.3vmax "Chilanka";
+    padding: 1.3vmax;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.205);
+    width: 50%;
+    margin: auto;
+  }
+  
+  .categoryForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 1vmax;
+  
+    justify-content: space-evenly;
+    height: 70%;
+    transition: all 0.5s;
+  }
+  
+  .categoryForm > div {
+    display: flex;
+    width: 50%;
+    align-items: center;
+  }
+  
+  .categoryForm > div > input {
+    padding: 1vmax 4vmax;
+    padding-right: 1vmax;
+    border:1px solid tomato;
+    color:rgb(8, 8, 8);
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4ch;
+    font: 300 0.9vmax cursive;
+    outline: none;
+  
+  }
+  .categoryForm > div > input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: gray !important;
+    opacity: 1; /* Firefox */
+  }
+
+  #categoryImage > input {
+    display: flex;
+    padding: 0%;
+}
+  
+  .categoryForm > div > svg {
+    position: absolute;
+    transform: translateX(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0.623);
+  }
+  
+  .categorySubmit {
+    border: none;
+    background-color: tomato;
+    color: white;
+    font: 300 0.9vmax "Roboto";
+    width: 50%;
+    padding: 0.8vmax;
+    cursor: pointer;
+    transition: all 0.5s;
+    border-radius: 4ch;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.219);
+  }
+  
+  .categorySubmit:hover {
+    background-color: rgb(179, 66, 46);
+  }
+  .categoryForm>#categoryImage {
+      display:flex;
+      max-width: 100%;
+  }
+  .categoryForm>#categoryImage>img {
+    max-width: 20%;
+}
+  
+  .BacktoProfileBtn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 2vmax;
+    margin-top: 2vmax;
+    justify-content: center;
+    cursor:pointer;
+    border: none;
+    background-color: rgb(75, 53, 49);
+    color: white;
+  }
+  .BacktoProfileBtn>span{
+    font: 300 0.9vmax "Chilanka";
+  }
+  .BacktoProfileBtn:hover{
+    background-color: rgb(40, 15, 43);
+  }
+  .BacktoProfileBtn>svg.MuiSvgIcon-root{
+    color:white !important;
+    margin-right: 2px;
+  }
+  input::file-selector-button {
+    cursor: pointer;
+    width: 100%;
+    z-index: 2;
+    height: 5vh;
+    border: none;
+    margin: 0%;
+    font: 400 0.8vmax cursive;
+    transition: all 0.5s;
+    color: rgba(0, 0, 0, 0.623);
+    background-color: rgb(255, 255, 255);
+  }
+  @media screen and (max-width: 600px) {
+    .updatePasswordContainer {
+      background-color: white;
+    }
+    .updatePasswordBox {
+      width: 100vw;
+      height: 95vh;
+    }
+  
+    .categoryForm {
+      padding: 5vmax;
+    }
+  
+    .categoryForm > div > input {
+      padding: 2.5vmax 5vmax;
+      font: 300 1.7vmax cursive;
+    }
+  
+    .categoryForm > div > svg {
+      font-size: 2.8vmax;
+    }
+  
+    .categorySubmit {
+      font: 300 1.9vmax "Roboto";
+      padding: 1.8vmax;
+    }
+  }
+  

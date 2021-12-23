@@ -33,7 +33,13 @@ import Dashboard from "./components/Admin/Dashboard";
 import ProductReviews from "./components/Admin/ProductReviews";
 import UpdateUser from "./components/Admin/UpdateUser";
 import UsersList from "./components/Admin/UsersList";
-
+import ProductList from "./components/Admin/ProductList";
+import NewProduct from "./components/Admin/NewProduct";
+import UpdateProduct from "./components/Admin/UpdateProduct";
+import OrderList from "./components/Admin/OrderList";
+import ProcessOrder from "./components/Admin/ProcessOrder";
+import CreateCategory from "./components/Admin/CreateCategory";
+import CategoryList from "./components/Admin/CategoryList.js";
 
 // import ProductReviews from "./component/Admin/ProductReviews.js";
 
@@ -173,6 +179,18 @@ function App() {
           path="/admin/reviews"
           isAdmin={true}
           component={ProductReviews}
+        />
+        <ProtectedRoute
+          exact
+          path="/admin/category/create"
+          isAdmin={true}
+          component={CreateCategory}
+        />
+        <ProtectedRoute
+          exact
+          path="/admin/category"
+          isAdmin={true}
+          component={CategoryList}
         />
 
         {/* <Route

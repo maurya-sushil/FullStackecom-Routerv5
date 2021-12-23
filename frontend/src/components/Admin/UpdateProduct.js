@@ -4,26 +4,30 @@ import {
   clearErrors,
   updateProduct,
   getProductDetails,
+  getProductsDetails,
 } from "../../actions/productAction";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
-import MetaData from "../layout/MetaData";
+import Metadata from "../layout/Metadata";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import DescriptionIcon from "@material-ui/icons/Description";
 import StorageIcon from "@material-ui/icons/Storage";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
-import { UPDATE_PRODUCT_RESET } from "../../constants/productConstants";
+import { UPDATE_PRODUCT_RESET } from "../../constants/productConstant";
 
 const UpdateProduct = ({ history, match }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
-  const { error, product } = useSelector((state) => state.productDetails);
+  const {loading, product, error } = useSelector(
+    (state) => state.productDetails
+  );
+
 
   const {
-    loading,
+    
     error: updateError,
     isUpdated,
   } = useSelector((state) => state.product);
@@ -48,16 +52,18 @@ const UpdateProduct = ({ history, match }) => {
   ];
 
   const productId = match.params.id;
+  console.log(productId)
 
   useEffect(() => {
     if (product && product._id !== productId) {
-      dispatch(getProductDetails(productId));
+      console.log("Iam reacher")
+      dispatch(getProductsDetails(productId));
     } else {
       setName(product.name);
       setDescription(product.description);
       setPrice(product.price);
       setCategory(product.category);
-      setStock(product.Stock);
+      setStock(product.stock);
       setOldImages(product.images);
     }
     if (error) {
@@ -122,11 +128,12 @@ const UpdateProduct = ({ history, match }) => {
 
       reader.readAsDataURL(file);
     });
-  };
+  }; 
+
 
   return (
     <Fragment>
-      <MetaData title="Create Product" />
+      <Metadata title="Edit Product" />
       <div className="dashboard">
         <SideBar />
         <div className="newProductContainer">
@@ -135,7 +142,7 @@ const UpdateProduct = ({ history, match }) => {
             encType="multipart/form-data"
             onSubmit={updateProductSubmitHandler}
           >
-            <h1>Create Product</h1>
+            <h1>Edit Product</h1>
 
             <div>
               <SpellcheckIcon />
@@ -224,7 +231,7 @@ const UpdateProduct = ({ history, match }) => {
               type="submit"
               disabled={loading ? true : false}
             >
-              Create
+              Update
             </Button>
           </form>
         </div>

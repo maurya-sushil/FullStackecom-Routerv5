@@ -9,12 +9,13 @@ import {
 } from "../../actions/productAction";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
-import MetaData from "../layout/MetaData";
+import Metadata from "../layout/Metadata";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Star from "@material-ui/icons/Star";
 
 import SideBar from "./Sidebar";
-import { DELETE_REVIEW_RESET } from "../../constants/productConstants";
+import { DELETE_REVIEW_RESET } from "../../constants/productConstant";
+
 
 const ProductReviews = ({ history }) => {
   const dispatch = useDispatch();
@@ -24,11 +25,12 @@ const ProductReviews = ({ history }) => {
   const { error: deleteError, isDeleted } = useSelector(
     (state) => state.review
   );
+  const reviews="njhfj"
 
-  const { error, reviews, loading } = useSelector(
+  const { error, review, loading } = useSelector(
     (state) => state.productReviews
   );
-
+  console.log("Product Reviews On frontend page : ",review)
   const [productId, setProductId] = useState("");
 
   const deleteReviewHandler = (reviewId) => {
@@ -117,8 +119,8 @@ const ProductReviews = ({ history }) => {
 
   const rows = [];
 
-  reviews &&
-    reviews.forEach((item) => {
+  review &&
+    review.forEach((item) => {
       rows.push({
         id: item._id,
         rating: item.rating,
@@ -129,7 +131,7 @@ const ProductReviews = ({ history }) => {
 
   return (
     <Fragment>
-      <MetaData title={`ALL REVIEWS - Admin`} />
+      <Metadata title={`ALL REVIEWS - Admin`} />
 
       <div className="dashboard">
         <SideBar />
@@ -162,7 +164,7 @@ const ProductReviews = ({ history }) => {
             </Button>
           </form>
 
-          {reviews && reviews.length > 0 ? (
+          {review && review.length > 0 ? (
             <DataGrid
               rows={rows}
               columns={columns}

@@ -5,12 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
-import MetaData from "../layout/MetaData";
+import Metadata from "../layout/Metadata";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
 import { getAllUsers, clearErrors, deleteUser } from "../../actions/userAction";
-import { DELETE_USER_RESET } from "../../constants/userConstants";
+import { DELETE_USER_RESET } from "../../constants/userConstant";
 
 const UsersList = ({ history }) => {
   const dispatch = useDispatch();
@@ -119,7 +119,7 @@ const UsersList = ({ history }) => {
 
   return (
     <Fragment>
-      <MetaData title={`ALL USERS - Admin`} />
+      <Metadata title={`ALL USERS - Admin`} />
 
       <div className="dashboard">
         <SideBar />

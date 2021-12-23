@@ -15,21 +15,22 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
 import { DELETE_PRODUCT_RESET } from "../../constants/productConstant";
+import { getCategory } from "../../actions/categoryAction";
 
-const ProductList = ({ history }) => {
+const CategoryList = ({ history }) => {
   const dispatch = useDispatch();
 
   const alert = useAlert();
 
-  const { error, products } = useSelector((state) => state.products);
+  const { error, categoryData } = useSelector((state) => state.category);
 
   const { error: deleteError, isDeleted } = useSelector(
     (state) => state.product
   );
 
-  const deleteProductHandler = (id) => {
+ /*  const deleteProductHandler = (id) => {
     dispatch(deleteProduct(id));
-  };
+  }; */
 
   useEffect(() => {
     if (error) {
@@ -37,7 +38,7 @@ const ProductList = ({ history }) => {
       dispatch(clearErrors());
     }
 
-    if (deleteError) {
+/*     if (deleteError) {
       alert.error(deleteError);
       dispatch(clearErrors());
     }
@@ -46,34 +47,34 @@ const ProductList = ({ history }) => {
       alert.success("Product Deleted Successfully");
       history.push("/admin/dashboard");
       dispatch({ type: DELETE_PRODUCT_RESET });
-    }
+    } */
 
-    dispatch(getAdminProduct());
+    dispatch(getCategory());
   }, [dispatch, alert, error, deleteError, history, isDeleted]);
 
   const columns = [
-    { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
+    { field: "id", headerName: "Category ID", minWidth: 200, flex: 0.5 },
 
     {
       field: "name",
-      headerName: "Name",
+      headerName: "Category name",
       minWidth: 350,
       flex: 1,
+     
     },
     {
-      field: "stock",
-      headerName: "Stock",
-      type: "number",
+      field: "slug",
+      headerName: "slug",
       minWidth: 150,
       flex: 0.3,
     },
 
     {
-      field: "price",
-      headerName: "Price",
-      type: "number",
+      field: "image",
+      headerName: "Image",
       minWidth: 270,
       flex: 0.5,
+      renderCell: (params) => <img src={params.value} style={{height:"100%"}} />,
     },
 
     {
@@ -86,14 +87,14 @@ const ProductList = ({ history }) => {
       renderCell: (params) => {
         return (
           <Fragment>
-            <Link to={`/admin/product/${params.getValue(params.id, "id")}`}>
+           {/*  <Link to={`/admin/product/${params.getValue(params.id, "id")}`}>
               <EditIcon />
-            </Link>
+            </Link> */}
 
             <Button
-              onClick={() =>
+             /*  onClick={() =>
                 deleteProductHandler(params.getValue(params.id, "id"))
-              }
+              } */
             >
               <DeleteIcon />
             </Button>
@@ -105,32 +106,33 @@ const ProductList = ({ history }) => {
 
   const rows = [];
 
-  products &&
-    products.forEach((item) => {
+  categoryData &&
+    categoryData.forEach((item) => {
+      console.log(item.categoryImage.url)
       rows.push({
         id: item._id,
-        stock: item.stock,
-        price: item.price,
+        slug: item.slug,
+        image: item.categoryImage.url,
         name: item.name,
       });
     });
 
   return (
     <Fragment>
-      <Metadata title={`ALL PRODUCTS - Admin`} />
+      <Metadata title={`ALL Categories - Admin`} />
 
       <div className="dashboard">
         <SideBar />
         <div className="productListContainer">
-          <h1 id="productListHeading">ALL PRODUCTS</h1>
+          <h1 id="productListHeading">ALL Categories</h1>
 
           <DataGrid
             rows={rows}
             columns={columns}
-            pageSize={10}
+            pageSize={5}
+            rowHeight={150}
             disableSelectionOnClick
             className="productListTable"
-            autoHeight
           />
         </div>
       </div>
@@ -138,6 +140,6 @@ const ProductList = ({ history }) => {
   );
 };
 
-export default ProductList;
+export default CategoryList;
 
 

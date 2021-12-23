@@ -2,12 +2,12 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
-import MetaData from "../layout/MetaData";
+import Metadata from "../layout/Metadata";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import PersonIcon from "@material-ui/icons/Person";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import SideBar from "./Sidebar";
-import { UPDATE_USER_RESET } from "../../constants/userConstants";
+import { UPDATE_USER_RESET } from "../../constants/userConstant";
 import {
   getUserDetails,
   updateUser,
@@ -72,7 +72,7 @@ const UpdateUser = ({ history, match }) => {
 
   return (
     <Fragment>
-      <MetaData title="Update User" />
+      <Metadata title="Update User" />
       <div className="dashboard">
         <SideBar />
         <div className="newProductContainer">
