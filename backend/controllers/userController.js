@@ -180,7 +180,7 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     email: req.body.email,
   };
 
-  if (req.body.avatar !== "") {
+  if (req.body.avatar !== "undefined") {
     const user = await User.findById(req.user.id);
 
     const imageId = user.avatar.public_id;
@@ -198,7 +198,13 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
       url: myCloud.secure_url,
     };
   }
-
+  else{
+    const user = await User.findById(req.user.id);
+    newUserData.avatar = {
+      public_id: user.avatar.public_id,
+      url: user.avatar.url,
+    };
+  }
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
     runValidators: true,

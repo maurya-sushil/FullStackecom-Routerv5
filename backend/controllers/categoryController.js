@@ -54,9 +54,7 @@ exports.updateCategory = CatchAsyncErrors(async (req, res, next) => {
     url:category.categoryImage.url
   };
 
-  console.log(newCategoryData)
-
-  if (req.body.categoryImage !== undefined) {
+  if (req.body.categoryImage !== "undefined") {
     const imageId = category.categoryImage.public_id
     await cloudinary.v2.uploader.destroy(imageId); /// Lets destroy that images
     const myCloud = await cloudinary.v2.uploader.upload(
@@ -71,6 +69,12 @@ exports.updateCategory = CatchAsyncErrors(async (req, res, next) => {
       public_id: myCloud.public_id,
       url: myCloud.secure_url,
     };
+  }
+  else {
+    newCategoryData.categoryImage = {
+      public_id:category.categoryImage.public_id,
+      url:category.categoryImage.url
+    }
   }
  
   category = await Category.findByIdAndUpdate(req.params.id, newCategoryData, {
