@@ -1,4 +1,4 @@
-# MERN E-COMMERCE TUTORIAL
+
 
 Hi! My name is **Sushil Kumar**, I have created this project  to lEarn MERN Stack for free on YouTube.
 
@@ -31,7 +31,7 @@ SMPT_PORT=
 CLOUDINARY_NAME
 CLOUDINARY_API_KEY
 CLOUDINARY_API_SECRET
-_fill each filed with your info respectively_
+
 
 ## Author
 Sushil Kumar
